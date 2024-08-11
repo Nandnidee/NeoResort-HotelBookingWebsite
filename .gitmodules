@@ -1,3 +1,6 @@
 [submodule "Hotel-Booking-frontend-"]
 	path = Hotel-Booking-frontend-
 	url = https://github.com/Nandnidee/Hotel-Booking-frontend-.git
+[submodule "Hotel-Website-Frontend"]
+	path = Hotel-Website-Frontend
+	url = https://github.com/Nandnidee/Hotel-Website-Frontend.git

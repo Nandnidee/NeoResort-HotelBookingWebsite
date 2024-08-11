@@ -96,25 +96,40 @@ router.post('/verify', async (req, res) => {
         });
         await newBooking.save();
 
-        const mailOptions = {
-            from: 'neoresortkanatal@gmail.com',
-            to: bookingDetails.email,
-            subject: 'Booking Confirmation',
-            text: `Dear ${bookingDetails.name},
-
-Thank you for booking with Neo Resort!
-
-We are pleased to confirm your booking as follows:
-- Check-In Date: ${new Date(bookingDetails.checkInDate).toLocaleDateString()}
-- Check-Out Date: ${new Date(bookingDetails.checkOutDate).toLocaleDateString()}
-- Total Cost: ₹${bookingDetails.amount}
-- Room Details: ${JSON.stringify(bookingDetails.selectedRoomTypes, null, 2)}
-
-If you have any questions or need further assistance, please do not hesitate to contact us.
-
-Best Regards,
-Neo Resort`,
-        };
+         // Format the room details for the email
+         const roomDetails = typeof bookingDetails.selectedRoomTypes === 'object'
+         ? Object.entries(bookingDetails.selectedRoomTypes).map(([type, quantity]) => {
+             return `<li>${type} - ${quantity} room</li>`;
+         }).join('')
+         : '<li>No room details available</li>';
+     
+ 
+         // Email content
+         const mailOptions = {
+             from: 'neoresortkanatal@gmail.com',
+             to: bookingDetails.email,
+             subject: 'Booking Confirmation from Neo Resort',
+             html: `
+                 <html>
+                     <body>
+                         <p>Dear ${bookingDetails.name},</p>
+                         <p>Thank you for booking with Neo Resort!</p>
+                         <p>We are pleased to confirm your booking as follows:</p>
+                         <ul>
+                             <li><strong>Check-In Date:</strong> ${new Date(bookingDetails.checkInDate).toLocaleDateString()}</li>
+                             <li><strong>Check-Out Date:</strong> ${new Date(bookingDetails.checkOutDate).toLocaleDateString()}</li>
+                             <li><strong>Total Cost:</strong> ₹${bookingDetails.amount}</li>
+                             <li><strong>Room Details:</strong></li>
+                             <ul>
+                                ${roomDetails}
+                             </ul>
+                         </ul>
+                         <p>If you have any questions or need further assistance, please do not hesitate to contact us.</p>
+                         <p>Best Regards,</p>
+                         <p><strong>Neo Resort</strong></p>
+                     </body>
+                 </html>`,
+         };
 
         const info = await transporter.sendMail(mailOptions);
         console.log('Email sent:', info.response);
