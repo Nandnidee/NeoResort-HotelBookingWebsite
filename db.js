@@ -1,14 +1,21 @@
 const mongoose = require("mongoose");
-var mongoURL = "mongodb+srv://deepikaasingh89:yapcYGlRzh3xAbac@cluster0.fhubyut.mongodb.net/Mern-room"
 
-mongoose.connect(mongoURL)
-var connection = mongoose.connection
+const mongoURL = "mongodb+srv://deepikaasingh89:deep89ika@cluster0.fhubyut.mongodb.net/Mern-room?retryWrites=true&w=majority";
 
-connection.on("error",()=>{
-    console.log("Mongodb Connection failed")
-})
-connection.on("connected",()=>{
-    console.log("MongoDB connection successful")
-})
+mongoose.connect(mongoURL, {
+    useNewUrlParser: true, // Use new URL parser
+    useUnifiedTopology: true, // Use new server discovery and monitoring engine
+    dbName: "Mern-room" // Specify the database name
+});
 
-module.exports=mongoose
+const connection = mongoose.connection;
+
+connection.on("error", (err) => {
+    console.error("MongoDB connection error:", err);
+});
+
+connection.once("open", () => {
+    console.log("MongoDB connection successful");
+});
+
+module.exports = mongoose;

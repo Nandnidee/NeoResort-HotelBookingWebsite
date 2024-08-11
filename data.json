@@ -1,0 +1,38 @@
+[
+    {
+        "area": "180 square feet",
+        "adult": 2,
+        "child": 1,
+        "rentperday": 3000,
+        "currentbook": [],
+        "type": "Deluxe",
+        "description": "Experience unparalleled comfort in our Deluxe Room, featuring stunning mountain views and modern amenities. Perfect for couples or small families."
+    },
+    {
+        "area": "180 square feet",
+        "adult": 2,
+        "child": 2,
+        "rentperday": 4000,
+        "currentbook": [],
+        "type": "Super Deluxe",
+        "description": "Indulge in the luxury of our Super Deluxe Room, offering breathtaking mountain vistas. Ideal for families looking for a blend of elegance and comfort."
+    },
+    {
+        "area": "216 square feet",
+        "adult": 2,
+        "child": 2,
+        "rentperday": 5000,
+        "currentbook": [],
+        "type": "Luxury",
+        "description": "Relax and rejuvenate in our spacious Luxury Room, boasting panoramic mountain and valley views. Enjoy the added luxury of a private balcony."
+    },
+    {
+        "area": "300 square feet",
+        "adult": 4,
+        "child": 2,
+        "rentperday": 7000,
+        "currentbook": [],
+        "type": "Family Luxury",
+        "description": "Create unforgettable memories in our Family Luxury Room, designed for larger families. Revel in the expansive space, stunning views, and private balcony."
+    }
+]
